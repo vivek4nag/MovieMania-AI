@@ -1,20 +1,31 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../utils/firebase"
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+  const navigate = useNavigate(); // this navigate hooks comes from react-router & using this hook we will navigate the user to the browse page once he signs in as we have done in onAuthStatechange ....
 
+  const dispatch = useDispatch();
   // to get the value from form, either we can create a state variable to get form data . Or we can use the useRef hook. By using this hook we will get the reference value of the form input data
   const email = useRef(null);
   const password = useRef(null);
-  const fullName = useRef(null)
-  const confirmPassword = useRef(null)
-  const confirmPasswordValue = !isSignInForm ? confirmPassword.current?.value || "" : "";
+  const fullName = useRef(null);
+  const confirmPassword = useRef(null);
+  const confirmPasswordValue = !isSignInForm
+    ? confirmPassword.current?.value || ""
+    : "";
 
-  const [errorMessage, setErrorMessage] = useState(null)
+  const [errorMessage, setErrorMessage] = useState(null);
 
   const handleButtonClick = () => {
     // form validation
@@ -25,45 +36,81 @@ const Login = () => {
     */
     console.log(password.current.value); // the value inside pasword box
 
-    const msg = checkValidData(email.current?.value, password.current?.value, fullName.current?.value, confirmPasswordValue, isSignInForm);
+    const msg = checkValidData(
+      email.current?.value,
+      password.current?.value,
+      fullName.current?.value,
+      confirmPasswordValue,
+      isSignInForm
+    );
     console.log(msg);
-    setErrorMessage(msg)
+    setErrorMessage(msg);
 
     // agr koi error msg aara to simply return kar jao warna aage bdho & signin/signup karo
-    if (msg) return
+    if (msg) return;
 
     // now comes signin/signup logic
     if (!isSignInForm) {
       //signup logic
-      createUserWithEmailAndPassword(auth, email.current?.value, password.current?.value)
+      createUserWithEmailAndPassword(
+        auth,
+        email.current?.value,
+        password.current?.value
+      )
         .then((userCredential) => {
-          // Signed up 
+          // Signed up
           const user = userCredential.user;
-          console.log(user);
 
+          updateProfile(user, {
+            //we are updating the profile with current user
+            displayName: fullName.current.value,
+            photoURL:
+              "https://images.statusfacebook.com/profile_pictures/funny/funny_profile_pictures_24.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                })
+              );
+              navigate("/browse"); // signup ke baad we will navigate him to browse page
+            })
+            .catch((error) => {
+              // An error occurred
+              setErrorMessage(error.message);
+            });
+
+          console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage)
+          setErrorMessage(errorCode + "-" + errorMessage);
         });
-
-
     } else {
       // signin logic
-      signInWithEmailAndPassword(auth, email.current?.value, password.current?.value)
+      signInWithEmailAndPassword(
+        auth,
+        email.current?.value,
+        password.current?.value
+      )
         .then((userCredential) => {
-          // Signed in 
+          // Signed in
           const user = userCredential.user;
           console.log(user);
+          navigate("/browse"); // login ke baad we will navigate him to browse page
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage)
+          setErrorMessage(errorCode + "-" + errorMessage);
         });
     }
-
   };
 
   const toggleSignInForm = () => {
@@ -126,7 +173,10 @@ const Login = () => {
               />
             )}
 
-            <p className="text-red-700 font-bold texe-lg py-2 text-left"> {errorMessage}</p>
+            <p className="text-red-700 font-bold texe-lg py-2 text-left">
+              {" "}
+              {errorMessage}
+            </p>
             <button
               className="p-2 m-2 w-72 rounded text-xl"
               style={{ backgroundColor: "#C11119" }}
