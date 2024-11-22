@@ -13,6 +13,8 @@ import { addUser } from "../utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
+
+  //navigate ka functionality now given to navbar, so woha se ho jayga navigate hence saara navigate related stuff removed
   const navigate = useNavigate(); // this navigate hooks comes from react-router & using this hook we will navigate the user to the browse page once he signs in as we have done in onAuthStatechange ....
 
   const dispatch = useDispatch();
@@ -78,7 +80,7 @@ const Login = () => {
                   photoURL: photoURL,
                 })
               );
-              navigate("/browse"); // signup ke baad we will navigate him to browse page
+              navigate("/browse"); // signup ke baad we will navigate him to browse page - but no longer needed since now it is handled by inauthchanged in header component
             })
             .catch((error) => {
               // An error occurred
@@ -103,7 +105,17 @@ const Login = () => {
           // Signed in
           const user = userCredential.user;
           console.log(user);
-          navigate("/browse"); // login ke baad we will navigate him to browse page
+
+          const { uid, email, displayName, photoURL } = auth.currentUser;
+          dispatch(
+            addUser({
+              uid: uid,
+              email: email,
+              displayName: displayName,
+              photoURL: photoURL,
+            })
+          );
+          navigate("/browse"); // login ke baad we will navigate him to browse page , again removed bcz navigate to browse now handled by navbar component
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -126,7 +138,7 @@ const Login = () => {
           backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://assets.nflxext.com/ffe/siteui/vlv3/03ad76d1-e184-4d99-ae7d-708672fa1ac2/web/IN-en-20241111-TRIFECTA-perspective_149877ab-fcbd-4e4f-a885-8d6174a1ee81_large.jpg')`,
         }}
       >
-        <div className="flex flex-col  justify-center bg-black bg-opacity-80 p-10 rounded-lg shadow-lg text-white">
+        <div className="flex flex-col  justify-center bg-black bg-opacity-80 p-10 rounded-lg shadow-lg text-white max-w-96">
           <h1 className="font-bold text-4xl p-4 text-left">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
