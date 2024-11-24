@@ -10,6 +10,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVATAR } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -66,8 +67,7 @@ const Login = () => {
           updateProfile(user, {
             //we are updating the profile with current user
             displayName: fullName.current.value,
-            photoURL:
-              "https://images.statusfacebook.com/profile_pictures/funny/funny_profile_pictures_24.jpg",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               // Profile updated!

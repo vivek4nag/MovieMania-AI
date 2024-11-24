@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
+import { LOGO } from "../utils/constants";
 
 const Header = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector((store) => store.user); // wo redux store ko subscribe kr rhe , basically user ka photo laane ke liye hum redux store se photo laayenge
@@ -28,7 +29,7 @@ const Header = () => {
   // we are using useEffect with empty dependency array bcz we want to set up the onauth.... only once when the page loads
   // initially we made this in body component. but the bug was that just by changing URL anybody could access the browse page w/o authenticating. se we want authstate chage function somewhere which is there on every page/ component. header is present everywhere, so we moved this authstatechange function to header component. now when someone is loggedin then only he will see the browse page.
   useEffect(() => {
-    const unsubscribe =  onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         // signIn case
         const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -40,27 +41,22 @@ const Header = () => {
             photoURL: photoURL,
           })
         );
-        navigate("/browse")
+        navigate("/browse");
       } else {
         // User is signed out
         dispatch(removeUser());
-        navigate("/")
+        navigate("/");
       }
     });
 
-    // below function will be called when our component unmounts. it is just a good prctice 
+    // below function will be called when our component unmounts. it is just a good prctice
     // When we call the onAuthStateChanged function, Firebase returns an unsubscribe function. This function is a cleanup mechanism that stops the listner & freees up resources
     return () => unsubscribe();
-
   }, []);
 
   return (
     <div className="absolute w-screen px-8 py-3 bg-gradient-to-b from-black flex justify-between ">
-      <img
-        className="w-44"
-        src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-        alt="logo"
-      />
+      <img className="w-44" src={LOGO} alt="logo" />
 
       {/* user && kiya hai bcz jab bhi user hoga i.e. login/signin hoga tabhi signout the option dikhega. yahn user hum redux store se laa rhe . so jab user me kuch hoga i.e. koi login kiya hoga tabhi ye button render hoga */}
       {user && (
