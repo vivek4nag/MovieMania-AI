@@ -55,7 +55,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="absolute w-screen px-8 py-3 bg-gradient-to-b from-black flex justify-between ">
+    <div className="absolute top-0 left-0 w-screen px-8 py-3 bg-gradient-to-b from-black flex z-50 justify-between ">
       <img className="w-44" src={LOGO} alt="logo" />
 
       {/* user && kiya hai bcz jab bhi user hoga i.e. login/signin hoga tabhi signout the option dikhega. yahn user hum redux store se laa rhe . so jab user me kuch hoga i.e. koi login kiya hoga tabhi ye button render hoga */}

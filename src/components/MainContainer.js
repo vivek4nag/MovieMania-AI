@@ -8,8 +8,9 @@ const MainContainer = () => {
   const movies = useSelector(store => store.movies?.nowPlayingMovies)
   if(movies === null) return; // if even before updating redux store, if we try to get movies it will be null, hence we will return. this is called early return
 
-  // yahn ek random function likhna hai so that random koi bhi movie ka video play ho jaaaye. random ka range 0-20
-  const mainMovie = movies[0]
+  // yahn ek random function likha hai so that random koi bhi movie ka video play ho jaaaye. random ka range 0-20
+  const randomIdx = Math.floor(Math.random()*18)
+  const mainMovie = movies[randomIdx]
   console.log(mainMovie);
 
   const {original_title, overview, id} = mainMovie
