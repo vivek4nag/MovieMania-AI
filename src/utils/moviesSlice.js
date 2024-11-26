@@ -13,6 +13,25 @@ const moviesSlice = createSlice({
     addNowPlayingMovies: (state, action) => {
       state.nowPlayingMovies = action.payload;
     },
+    addPopularMovies: (state, action) => {
+      state.popularMovies = action.payload;
+    },
+
+    addTopRatedMovies: (state, action) => {
+      state.topRatedMovies = action.payload;
+    },
+
+    addUpcomingMovies: (state, action) => {
+      state.upcomingMovies = action.payload;
+    },
+
+    addTrendingMovies: (state, action) => {
+      state.trendingMovies = action.payload;
+    },
+
+    addTrendingTVShows: (state, action) => {
+      state.trendingTVShows = action.payload;
+    },
 
     // dynamically trailer video ki keys nikalne ke liye humne redux store me trailer ko bhi add kr diya
     addTrailerVideo : (state, action) => {
@@ -21,6 +40,6 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { addNowPlayingMovies, addTrailerVideo } = moviesSlice.actions;
+export const { addNowPlayingMovies, addTrailerVideo, addPopularMovies, addTopRatedMovies, addUpcomingMovies,addTrendingMovies, addTrendingTVShows } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

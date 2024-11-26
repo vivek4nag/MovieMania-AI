@@ -17,9 +17,11 @@ const MainContainer = () => {
   
 
   return (
-    <div>
+    <div className="relative">
       <VideoTitle title = {original_title} overview = {overview}/>
       <VideoBackGround movieId={id}/>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black pointer-events-none"></div>
+
 
     </div>
   )
