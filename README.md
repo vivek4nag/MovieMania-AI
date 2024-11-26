@@ -1,3 +1,3 @@
-# NETFLIX-GPT
+# MOVIE MANIA AI (beta version)
 
-[hosted link](https://netflixgpt-494a9.web.app/)
+[hosted link](https://movie-mania-ai.netlify.app/)
