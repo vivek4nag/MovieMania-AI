@@ -7,6 +7,7 @@ import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
 import useTrendingMovies from "../hooks/useTrendingMovies";
 import useTrendingTVShows from "../hooks/useTrendingTVShows";
+import Footer from "./Footer";
 
 const Browse = () => {
 
@@ -24,6 +25,7 @@ const Browse = () => {
       <Header />
       <MainContainer/>
       <SecondaryContainer/>
+      <Footer/>
     </>
   );
 };
