@@ -6,7 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
 // import { LOGO } from "../utils/constants";
-import LOGO from "../assets/LOGO1.png"
+import LOGO from "../assets/LOGO1.png";
+import { toggleGptSearchView } from "../utils/gptSlice";
+
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -55,18 +57,29 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleGPTSearchClick = () => {
+    // here we want to toggle GPT search- click krne pr GPT search wala page dikhayga, warna normal browse & other stuff
+    // we can use state variable to toggle, but jab redux hai to use kro bc
+    // we are toggling showGptSearch by toggling an action
+    dispatch(toggleGptSearchView())
+  }
+
+  // gpt wala button ke andar ka text toggle krne ke liye ye variable laa rhe redux store se useSelector hook use krke
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
   return (
     <div className="absolute top-0 left-0 w-screen px-8 py-3 bg-gradient-to-b from-black flex z-50 justify-between ">
       <img className="w-44" src={LOGO} alt="logo" />
 
       {/* user && kiya hai bcz jab bhi user hoga i.e. login/signin hoga tabhi signout the option dikhega. yahn user hum redux store se laa rhe . so jab user me kuch hoga i.e. koi login kiya hoga tabhi ye button render hoga */}
       {user && (
-        <div className="flex p-4 gap-4">
-          <img
-            className="w-10 h-10 rounded-md border-1 border-gray-500"
-            src={user?.photoURL}
-            alt="user img"
-          />
+        <div className="flex p-4 gap-4 ">
+          <button 
+          onClick={handleGPTSearchClick}
+          className="px-2 py-2 text-white font-bold rounded-lg bg-green-600 shadow-md transition-all duration-300 hover:bg-green-900">
+            {showGptSearch? "GO back" : "GPT Search"}
+            
+          </button>
 
           <button
             onClick={handleSignout}
@@ -74,6 +87,12 @@ const Header = () => {
           >
             Sign Out
           </button>
+
+          <img
+            className="w-10 h-10 rounded-md border-1 border-gray-500"
+            src={user?.photoURL}
+            alt="user img"
+          />
         </div>
       )}
     </div>
