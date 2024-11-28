@@ -8,7 +8,8 @@ import { addUser, removeUser } from "../utils/userSlice";
 // import { LOGO } from "../utils/constants";
 import LOGO from "../assets/LOGO1.png";
 import { toggleGptSearchView } from "../utils/gptSlice";
-
+import { SUPPORTED_LANGUAGES } from "../utils/constants";
+import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -61,24 +62,38 @@ const Header = () => {
     // here we want to toggle GPT search- click krne pr GPT search wala page dikhayga, warna normal browse & other stuff
     // we can use state variable to toggle, but jab redux hai to use kro bc
     // we are toggling showGptSearch by toggling an action
-    dispatch(toggleGptSearchView())
-  }
+    dispatch(toggleGptSearchView());
+  };
 
   // gpt wala button ke andar ka text toggle krne ke liye ye variable laa rhe redux store se useSelector hook use krke
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
 
+  const handleLanguageChange = (e) =>{
+    // console.log(e.target.value)
+    dispatch(changeLanguage(e.target.value))
+  }
+
   return (
-    <div className="absolute top-0 left-0 w-screen px-8 py-3 bg-gradient-to-b from-black flex z-50 justify-between ">
+    <div className="absolute top-0 left-0 w-[100%] px-8 py-3 bg-gradient-to-b from-black flex z-50 justify-between ">
       <img className="w-44" src={LOGO} alt="logo" />
 
       {/* user && kiya hai bcz jab bhi user hoga i.e. login/signin hoga tabhi signout the option dikhega. yahn user hum redux store se laa rhe . so jab user me kuch hoga i.e. koi login kiya hoga tabhi ye button render hoga */}
       {user && (
         <div className="flex p-4 gap-4 ">
-          <button 
-          onClick={handleGPTSearchClick}
-          className="px-2 py-2 text-white font-bold rounded-lg bg-green-600 shadow-md transition-all duration-300 hover:bg-green-900">
-            {showGptSearch? "GO back" : "GPT Search"}
-            
+          {showGptSearch && (
+            <select className="px-3 py-1 bg-slate-100 rounded-md" onChange={handleLanguageChange}>
+              {SUPPORTED_LANGUAGES.map((lang) => (
+                <option key={lang.identifier} value={lang.identifier}>
+                  {lang.name}
+                </option>
+              ))}
+            </select>
+          )}
+          <button
+            onClick={handleGPTSearchClick}
+            className="px-2 py-2 text-white font-bold rounded-lg bg-green-600 shadow-md transition-all duration-300 hover:bg-green-900"
+          >
+            {showGptSearch ? "GO back" : "GPT Search"}
           </button>
 
           <button
