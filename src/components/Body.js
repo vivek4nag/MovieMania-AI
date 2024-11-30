@@ -25,7 +25,7 @@ const Body = () => {
 
 
   return (
-    <div>
+    <div className="w-[100%] overflow-x-hidden">
       <RouterProvider router={appRouter} />
     </div>
   );
