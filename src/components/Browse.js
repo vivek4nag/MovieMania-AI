@@ -27,14 +27,18 @@ const Browse = () => {
     <>
       <Header />
       {showGptSearch ? (
+        <>
         <GptSearchPage />
+        
+        </>
       ) : (
         <>
           <MainContainer />
           <SecondaryContainer />
+          <Footer />
         </>
       )}
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
