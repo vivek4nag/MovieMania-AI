@@ -93,7 +93,7 @@ const Header = () => {
             onClick={handleGPTSearchClick}
             className="px-2 py-2 text-white font-bold rounded-lg bg-green-600 shadow-md transition-all duration-300 hover:bg-green-900"
           >
-            {showGptSearch ? "GO back" : "GPT Search"}
+            {showGptSearch ? "GO back" : "AI Movie Search"}
           </button>
 
           <button
