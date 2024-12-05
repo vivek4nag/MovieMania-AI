@@ -3,7 +3,7 @@ import lang from "../utils/languageConstants";
 import { useDispatch, useSelector } from "react-redux";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { API_OPTIONS } from "../utils/constants";
-import {addGptMovieResults} from "../utils/gptSlice"
+import { addGptMovieResults } from "../utils/gptSlice"
 
 const GptSearchBar = () => {
   const dispatch = useDispatch()
@@ -16,16 +16,16 @@ const GptSearchBar = () => {
 
   const apiKey = process.env.REACT_APP_GEMINI_API_KEY;
 
-  const searchMovieTMDB = async(movie) => {
+  const searchMovieTMDB = async (movie) => {
     try {
       const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`, API_OPTIONS)
 
       const json = await data.json();
       return json.results;
-      
+
     } catch (error) {
       console.log(error);
-      
+
     }
   }
 
@@ -37,7 +37,7 @@ const GptSearchBar = () => {
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-      const prompt = "Act as a movie & TV series recommendation system & suggest the same for the query:" + searchText?.current?.value + ". Only give me names of 5 movies or TV series, each item comma separated";
+      const prompt = "Act as a movie & TV series recommendation system & suggest the same for the query:" + searchText?.current?.value + ". Only give me names of 8 movies or TV series, each item comma separated";
 
       const result = await model.generateContent(prompt);
       console.log(result.response.text());
@@ -52,12 +52,12 @@ const GptSearchBar = () => {
       const tmdbResults = await Promise.all(promiseArray)
       console.log(tmdbResults);
       // hum ek object pass kr rhe bcz bss aise hi mann hua ki tmdb api se aaya hua array ke alawa hum gpt jo movies ka naam de rha tha wo bhi store krenge hum , so we are dispatching both the things in form of array
-      dispatch(addGptMovieResults({movieNames : gptMovies, movieResults: tmdbResults}))
-      
+      dispatch(addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResults }))
 
-      
-      
-      
+
+
+
+
     } catch (error) {
       console.log(error);
     }
@@ -66,9 +66,14 @@ const GptSearchBar = () => {
   return (
     <div className="flex justify-center pt-[5%] pb-1 text-white">
       <div className=" md:w-2/3  p-8">
-        <h1 className="text-4xl font-bold text-center mb-6">
+        <h1 className="text-4xl font-bold text-center mb-4">
           Find Your Perfect Movie 🎥
         </h1>
+        <p className="text-gray-400 text-sm text-center pb-3">
+          Looking for the perfect movie?
+          <span className="text-gray-300 font-semibold"> Our AI suggests hidden gems and similar movies </span>
+          based on your search keywords. Try exploring with new keywords!
+        </p>
 
         <form
           className="flex flex-col md:flex-row justify-center items-center gap-4"
