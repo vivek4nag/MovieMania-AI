@@ -28,7 +28,7 @@ return (
       
       <div className="flex overflow-x-scroll space-x-4 scrollbar-hide">
         {movies?.map((movie) => (
-          <MovieCard key={movie?.id} posterPath={movie?.poster_path} />
+          <MovieCard key={movie?.id} posterPath={movie?.poster_path} movieName = {movie?.original_title } />
         ))}
       </div>
     </div>
