@@ -10,9 +10,9 @@ const VideoBackGround = ({ movieId }) => {
 
 
     return (
-        <div className="relative w-screen h-screen overflow-hidden">
+        <div className="relative w-[100%]  h-screen overflow-hidden">
             <iframe
-                className="absolute w-full aspect-video object-cover z-0 scale-[1.4] "
+                className="absolute w-[100%] aspect-video object-cover overflow-hidden z-0 scale-[1.4] "
                 src={`https://www.youtube.com/embed/${trailerVideo?.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo?.key}`}
                 title="YouTube video player"
                 frameBorder="0"
