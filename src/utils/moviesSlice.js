@@ -6,7 +6,12 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState: {
     nowPlayingMovies: null,
-    trailerVideo: null
+    trailerVideo: null,
+    popularMovies: null,
+    topRatedMovies: null,
+    upcomingMovies: null,
+    trendingMovies: null,
+    trendingTVShows: null,
   },
   reducers: {
     // jo bhi now playing movies aarhi hai as an array, usko daal denge redux store me 
