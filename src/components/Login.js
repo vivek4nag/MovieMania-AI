@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { USER_AVATAR } from "../utils/constants";
-import background from "../assets/background.jpg"
+import background from "../assets/background.jpg";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -134,13 +134,13 @@ const Login = () => {
       <Header />
 
       <div
-        className="h-screen bg-cover bg-center flex flex-col justify-center items-center"
+        className="h-screen bg-cover bg-center object-cover flex flex-col justify-center items-center"
         style={{
           backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.9)), url(${background})`,
         }}
       >
-        <div className="flex flex-col  justify-center bg-black bg-opacity-80 p-10 rounded-lg shadow-lg text-white max-w-96">
-          <h1 className="font-bold text-4xl p-4 text-left">
+        <div className="flex flex-col justify-center bg-black bg-opacity-80 md:p-10 rounded-lg shadow-lg text-white w-full max-w-fit md:max-w-96">
+          <h1 className="font-bold text-2xl px-[2rem] py-2 md:text-4xl md:p-4 text-left">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
           <form
@@ -152,7 +152,7 @@ const Login = () => {
                 ref={fullName}
                 type="text"
                 placeholder="Full Name"
-                className="p-4 m-4 w-72 rounded bg-gray-800 bg-opacity-20 "
+                className="md:p-4 p-2 m-2 md:m-4 md:w-72 w-[80%] rounded bg-gray-800 bg-opacity-20 "
               />
             )}
 
@@ -161,7 +161,7 @@ const Login = () => {
                 type="number"
                 placeholder="Mobile Number"
                 max={10}
-                className="p-4 m-4 w-72 rounded bg-gray-800 bg-opacity-20 "
+                className="md:p-4 p-2 m-2 md:m-4 md:w-72 w-[80%] rounded bg-gray-800 bg-opacity-20 "
               />
             )} */}
 
@@ -169,29 +169,31 @@ const Login = () => {
               ref={email}
               type="email"
               placeholder="Email Address"
-              className="p-4 m-4 w-72 rounded bg-gray-800 bg-opacity-20 "
+              className="md:p-4 p-2 m-2 md:m-4 md:w-72 w-[80%] rounded bg-gray-800 bg-opacity-20 "
             />
             <input
               ref={password}
               type="password"
               placeholder="Password"
-              className="p-4 m-4 w-72 rounded bg-gray-800 bg-opacity-20"
+              className="md:p-4 p-2 m-2 md:m-4 md:w-72 w-[80%] rounded bg-gray-800 bg-opacity-20"
             />
             {!isSignInForm && (
               <input
                 ref={confirmPassword}
                 type="password"
                 placeholder="Confirm Password"
-                className="p-4 m-4 w-72 rounded bg-gray-800 bg-opacity-20"
+                className="md:p-4 p-2 m-2 md:m-4 md:w-72 w-[80%] rounded bg-gray-800 bg-opacity-20"
               />
             )}
 
-            <p className="text-red-700 font-bold texe-lg py-2 text-left">
-              {" "}
+            {errorMessage && (
+            <p className="text-red-700 font-bold text-sm py-2 text-left">
               {errorMessage}
             </p>
+            )}
+
             <button
-              className="p-2 m-2 w-72 rounded text-xl"
+              className="p-2 m-2 md:w-72 w-[40%] rounded text-sm md:text-xl"
               style={{ backgroundColor: "#C11119" }}
               onClick={handleButtonClick}
             >

@@ -79,13 +79,16 @@ const Header = () => {
       <img className="w-48 mx-auto sm:mx-0 sm:w-44" src={LOGO} alt="logo" />
 
       {/* ye niche is hamburger menu */}
-      <button className="sm:hidden flex flex-col items-center justify-center w-10 h-10 text-white"
+      {user && (
+        <button className="sm:hidden flex flex-col items-center justify-center w-10 h-10 text-white"
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <span className={`block w-6 h-0.5 bg-white transform transition duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}></span>
         <span className={`block w-5 h-0.5 bg-white mt-1.5 transition transform-300 ${menuOpen ? "opacity-0" : ""}`}></span>
         <span className={`block w-6 h-0.5 bg-white mt-1.5 transform transition duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}></span>
       </button>
+      )}
+      
 
       {/* user && kiya hai bcz jab bhi user hoga i.e. login/signin hoga tabhi signout the option dikhega. yahn user hum redux store se laa rhe . so jab user me kuch hoga i.e. koi login kiya hoga tabhi ye button render hoga */}
       {user && (
@@ -125,7 +128,7 @@ const Header = () => {
       )}
 
       {/* chote screen ke liye drop down menu */}
-      {menuOpen &&(
+      { user && menuOpen &&(
         <div className="absolute top-16 left-0 w-full bg-black bg-opacity-95 text-white shadow-lg flex flex-col items-center py-4 gap-4 sm:hidden rounded-lg">
 
           <button onClick={handleGPTSearchClick}

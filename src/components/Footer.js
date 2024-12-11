@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
     const year = new Date().getFullYear();
     return (
-        <div className="w-full bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-6">
+        <div className="w-full  bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white py-6">
             <div className='max-w-6xl mx-auto flex flex-col items-center text-center'>
                 <p className="text-lg font-semibold">
                     Made with 💗 by {" "}
