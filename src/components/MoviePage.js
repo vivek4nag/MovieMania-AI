@@ -1,19 +1,21 @@
 import React from 'react'
-import MovieTrailer from './MovieTrailer'
 import MovieDetails from './MovieDetails'
-import Footer from './Footer'
+import VideoBackGround from './VideoBackGround'
+import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import ImageBackGround from './ImageBackGround'
 
 const MoviePage = () => {
+    const {id} = useParams()
+    const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
   return (
-    <>
-    <div>
-        <MovieTrailer/>
+   
+    <div className='relative h-screen '>
+      {/* <VideoBackGround  movieId={id}/> */}
+      {trailerVideo? <VideoBackGround  movieId={id}/> : <ImageBackGround /> }
+    
+    <MovieDetails/>
     </div>
-    <div>
-        <MovieDetails/>
-    </div>
-    <Footer/>
-    </>
   )
 }
 
