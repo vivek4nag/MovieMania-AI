@@ -9,14 +9,20 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYzMyN2Q2ZDExODI1YTVjOWM1MDMyNmVjMTkyMDFlNCIsIm5iZiI6MTczMjM2MjkxMi4wMjIwNzM3LCJzdWIiOiI2NzQxYzBiNWRkNTNmYTAwNjAzMzU3ZjgiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.0B6-vTOmZ9UlqMClealyuNX4FCRKc49y8xuLGE1cyxY",
+      "Bearer "+ process.env.REACT_APP_TMDB_KEY,
   },
 };
 
 export const POSTER_IMG_CDN_URL = "https://image.tmdb.org/t/p/w300";
+
+// export const BACKDROP_IMG_CDN_URL = "https://image.tmdb.org/t/p/w500"
 
 export const SUPPORTED_LANGUAGES = [
   { identifier: "en", name: "English" },
   { identifier: "hindi", name: "Hindi" },
   { identifier: "french", name: "French" },
 ];
+
+export const EMPTY_MOVIE_POSTER = "https://thumbs.dreamstime.com/b/cinema-festival-flyer-poster-vector-illustration-film-industry-movie-reel-clapper-board-template-your-design-89466440.jpg"
+
+
