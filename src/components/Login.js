@@ -38,7 +38,7 @@ const Login = () => {
     console.log(email.current.value); // the value inside input box
     console.log(password);
     */
-    console.log(password.current.value); // the value inside pasword box
+    // console.log(password.current.value); // the value inside pasword box
 
     const msg = checkValidData(
       email.current?.value,
@@ -47,7 +47,7 @@ const Login = () => {
       confirmPasswordValue,
       isSignInForm
     );
-    console.log(msg);
+    // console.log(msg);
     setErrorMessage(msg);
 
     // agr koi error msg aara to simply return kar jao warna aage bdho & signin/signup karo
@@ -88,7 +88,7 @@ const Login = () => {
               setErrorMessage(error.message);
             });
 
-          console.log(user);
+          // console.log(user);
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -105,7 +105,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
 
           const { uid, email, displayName, photoURL } = auth.currentUser;
           dispatch(
@@ -191,7 +191,15 @@ const Login = () => {
               {errorMessage}
             </p>
             )}
+            {isSignInForm && !errorMessage && (
+              <>
+              <p>Mock login</p>
+              <p>id : netflix123@vivek.com</p>
+              <p className="pb-4">pw: Vivek@1234</p>
+              </>
+            )
 
+            }
             <button
               className="p-2 m-2 md:w-72 w-[40%] rounded text-sm md:text-xl"
               style={{ backgroundColor: "#C11119" }}

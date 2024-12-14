@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { addUser, removeUser } from "../utils/userSlice";
@@ -75,8 +75,10 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute top-0 left-0 w-[100%] px-8 py-4 bg-gradient-to-b from-black flex items-center z-50 justify-between ">
-      <img className="w-48 mx-auto sm:mx-0 sm:w-44" src={LOGO} alt="logo" />
+    <div className="absolute top-0 left-0 w-[100%] px-8 py-4 bg-gradient-to-b from-black flex items-center z-[999] justify-between ">
+      
+      <img className="w-48 mx-auto sm:mx-0 sm:w-44 cursor-pointer" src={LOGO} alt="logo" />
+      
 
       {/* ye niche is hamburger menu */}
       {user && (
