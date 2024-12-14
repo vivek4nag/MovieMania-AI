@@ -14,12 +14,12 @@ const useMovieTrailer = (movieId) => {
   const getMovieVideos = async () => {
     const data = await fetch(url, API_OPTIONS);
     const json = await data.json();
-    console.log(json.results);
+    // console.log(json.results);
 
     //filtering trailer wla video from the array of many types of videos
-    const filterTrailerArray = json.results.filter((video) => video.type === "Trailer");
-    const trailer = filterTrailerArray.length !== 0 ? filterTrailerArray[0] : json.results[0]; //bss fallback ke liye ki agr trailer naa mile to jo bhi pehla video ho utha lo
-    console.log(trailer);
+    const filterTrailerArray = json.results?.filter((video) => video.type === "Trailer");
+    const trailer = filterTrailerArray?.length !== 0 ? filterTrailerArray[0] : json.results[0]; //bss fallback ke liye ki agr trailer naa mile to jo bhi pehla video ho utha lo
+    // console.log(trailer);
 
     // either we can set a state to dynamically update the trailer key for the iframe youtube video src, or can store our trailer in redux store & get key whenever reqd from there, we are doing latter here
     dispatch(addTrailerVideo(trailer));
