@@ -95,7 +95,7 @@ const MovieDetails = () => {
           <div className="flex flex-wrap gap-16 text-lg text-gray-200 pt-10  md:hidden lg:inline-flex">
             <div className="flex flex-col">
               <span className="font-bold text-gray-100">Popularity:</span>
-              <span>{Math.floor(popularity / 100)} 🌟</span>
+              <span>{popularity < 1 ? "Bahot popular hai" : popularity} 🌟</span>
             </div>
 
             <div className="flex flex-col">

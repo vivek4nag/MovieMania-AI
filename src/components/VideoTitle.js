@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const VideoTitle = ({ title, overview }) => {
+const VideoTitle = ({ title, overview, id }) => {
   return (
-    <div className="pt-60 px-6 md:px-24 absolute z-10 text-white w-screen h-screen bg-gradient-to-r from-black">
+    <div className=" absolute pt-60 px-6 md:px-24 text-white w-screen h-screen bg-gradient-to-r from-black z-50">
       <h1 className="text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
         {title}
       </h1>
@@ -10,12 +11,16 @@ const VideoTitle = ({ title, overview }) => {
         {overview}
       </p>
       <div className="flex gap-4 flex-wrap">
-        <button className="bg-white text-black font-semibold py-2 px-6  rounded-md shadow-lg hover:bg-gray-400 transition-all duration-300">
-          ▶️ Play
-        </button>
-        <button className="bg-gray-800 text-white font-semibold py-2 px-6 bg-opacity-60 rounded-md shadow-lg hover:bg-gray-700 transition-all duration-300">
-          More Info
-        </button>
+        <Link to={`/browse/${id}`}>
+          <button className="bg-white text-black font-semibold py-2 px-6  rounded-md shadow-lg hover:bg-gray-400 transition-all duration-300">
+            ▶️ Play
+          </button>
+        </Link>
+        <Link to={`/browse/${id}`}>
+          <button className="bg-gray-800 text-white font-semibold py-2 px-6 bg-opacity-60 rounded-md shadow-lg hover:bg-gray-700 transition-all duration-300">
+            More Info
+          </button>
+        </Link>
       </div>
     </div>
   );
