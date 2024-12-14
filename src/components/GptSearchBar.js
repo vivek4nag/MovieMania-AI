@@ -40,23 +40,19 @@ const GptSearchBar = () => {
       const prompt = "Act as a movie & TV series recommendation system & suggest the same for the query:" + searchText?.current?.value + ". Only give me names of 8 movies or TV series, each item comma separated";
 
       const result = await model.generateContent(prompt);
-      console.log(result.response.text());
+      // console.log(result.response.text());
 
       // result jo text aayga usko comma ke basis pe split krke array me dal rhe & then for each item in array we will call TMDB api to get movie
       const gptMovies = result.response.text().split(",")
-      console.log(gptMovies);
+      // console.log(gptMovies);
 
       //calling movie via api using map will return an array of promise. & then we have to resolve the promise to get the mvoies. we are resolving all eksath using promise.all method
       const promiseArray = gptMovies.map((movie) => searchMovieTMDB(movie))
 
       const tmdbResults = await Promise.all(promiseArray)
-      console.log(tmdbResults);
+      // console.log(tmdbResults);
       // hum ek object pass kr rhe bcz bss aise hi mann hua ki tmdb api se aaya hua array ke alawa hum gpt jo movies ka naam de rha tha wo bhi store krenge hum , so we are dispatching both the things in form of array
       dispatch(addGptMovieResults({ movieNames: gptMovies, movieResults: tmdbResults }))
-
-
-
-
 
     } catch (error) {
       console.log(error);
@@ -64,7 +60,7 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="flex justify-center pt-[5%] pb-1 text-white">
+    <div className="flex justify-center pt-[5rem] pb-1 text-white">
       <div className=" md:w-2/3  p-8">
         <h1 className="text-4xl font-bold text-center mb-4">
           Find Your Perfect Movie 🎥
@@ -82,15 +78,15 @@ const GptSearchBar = () => {
           <input
             ref={searchText}
             type="text"
-            placeholder={lang[langkey].gptSearchPlaceholder}
+            placeholder="what do you wanna watch today?"
             className="w-full md:w-2/3 p-4 rounded-lg bg-gray-700 text-gray-200 placeholder-gray-400 shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 transition duration-300"
           />
           <button
-            className="px-6 py-3 text-lg font-semibold bg-gradient-to-r from-red-500 to-pink-600 rounded-lg hover:from-red-600 hover:to-pink-700 transition duration-500"
+            className="px-4 py-2 text-xs md:px-7 md:py-3 md:text-lg md:font-semibold bg-gradient-to-r from-red-500 to-pink-600 rounded-lg hover:from-red-600 hover:to-pink-700 transition duration-500"
             onClick={handleGPTSearchClick}
           >
             {" "}
-            {lang[langkey].search}
+            Search Now!
           </button>
         </form>
       </div>
