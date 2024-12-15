@@ -11,67 +11,53 @@ Welcome to MovieMania AI – your personal movie companion! Whether you're in th
 
 ## 🌆 <span style="color:#29c4f6">Features
 
-1. ✨ Google Firebase Authentication
-
+1. ✨ Google Firebase Authentication <br>
 Login and Sign-up functionality to keep your movie preferences safe and sound.
 
-“May the login be with you.” — A wise coder, probably.
+   “May the login be with you.” — A wise coder, probably.
 
-2. 📺 Landing Page with a Movie Trailer
-
+2. 📺 Landing Page with a Movie Trailer <br>
 Enjoy the latest movie trailer playing seamlessly in the background.
-
 Sets the mood for your cinematic journey. “It’s like the opening credits, but better.”
 
-3. 🎬 Browse Movies by Categories
-
+3. 🎬 Browse Movies by Categories <br>
 Explore genres like Action, Drama, Comedy, and more.
-
 “Categorically awesome!”
 
-4. 🔍 AI Movie Search
-
+4. 🔍 AI Movie Search <br>
 Use our AI-powered movie search page to discover hidden gems.
-
 Leveraging Gemini API & TMDB, we bring you customized recommendations.
 
-"AI knows what you’ll watch before you do!" — Totally not creepy, right?
+   "AI knows what you’ll watch before you do!" — Totally not creepy, right?
 
-5. 📊 Movie Details Page
-
+5. 📊 Movie Details Page <br>
 Click any movie card to open a detailed page with:
-
 Runtime, Budget, Revenue
-
 Genres, Popularity, Ratings
+And more! <br>
 
-And more!
+   "It's like IMDb, but make it cool."
 
-"It's like IMDb, but make it cool."
-
-6. 👟 Responsive Design
-
+6. 👟 Responsive Design <br>
 Fully responsive design with a sleek hamburger menu for small screens.
 
-"Who needs popcorn when your UI pops this much?"
+   "Who needs popcorn when your UI pops this much?"
 
 ## 🚀 Tech Stack
 
-Frontend: React.js, Tailwind CSS
+- Frontend: React.js, Tailwind CSS
 
-Authentication: Firebase Authentication
+- Authentication: Firebase Authentication
 
-Movie Database: TMDB API
+-  Movie Database: TMDB API
 
-AI Features: Gemini API
+- AI Features: Gemini API
 
-Hosting: Firebase Hosting
+- Hosting: Firebase Hosting
 
 ## 📲 Installation
 
-1. Clone the repository:
-   <br>
-
+1. Clone the repository:<br>
 `git clone https://github.com/vivek4nag/MovieMania-AI`
 
 2. Navigate to the project directory: <br>
@@ -82,26 +68,25 @@ Hosting: Firebase Hosting
 
 4. Start the development server:
    <br>
-
 `npm start`
 
-Note: Make sure to add your API keys for Firebase, TMDB, and Gemini in the .env file.
+   Note: Make sure to add your API keys for Firebase, TMDB, and Gemini in the .env file.
 
 ## 🍿 MovieMania AI in Action
 
-Landing Page: Start your journey with a movie trailer playing in the background.
+- Landing Page: Start your journey with a movie trailer playing in the background.
 
-Browse Movies: Navigate through various categories and find what you’re in the mood for.
+- Browse Movies: Navigate through various categories and find what you’re in the mood for.
 
-Movie Details: Dive deep into the specifics of each movie.
+- Movie Details: Dive deep into the specifics of each movie.
 
-AI Search: Let AI work its magic to recommend your next favorite flick.
+- AI Search: Let AI work its magic to recommend your next favorite flick.
 
 ## 🎥 APIs Used
 
-TMDB API: Fetches movie details and images.
+- TMDB API: Fetches movie details and images.
 
-Gemini API: Powers AI-driven movie recommendations.
+- Gemini API: Powers AI-driven movie recommendations.
 
 ## 🎮 Fun Easter Egg
 
@@ -109,21 +94,21 @@ Gemini API: Powers AI-driven movie recommendations.
 
 ## 🎢 Challenges Faced
 
-🌀 Handling real-time API responses for smooth user experience.
+- 🌀 Handling real-time API responses for smooth user experience.
 
-🎭 Making the background trailer responsive while maintaining cinematic quality.
+- 🎭 Making the background trailer responsive while maintaining cinematic quality.
 
-🧩 Integrating multiple APIs like Firebase, TMDB, and Gemini flawlessly.
+- 🧩 Integrating multiple APIs like Firebase, TMDB, and Gemini flawlessly.
 
-🍔 Designing a responsive hamburger menu that doesn’t eat up the whole screen! 😜
+- 🍔 Designing a responsive hamburger menu that doesn’t eat up the whole screen! 😜
 
 ## 🛠️ Support
 
-If you encounter any issues or have questions, feel free to open an issue on the repository.
+   If you encounter any issues or have questions, feel free to open an issue on the repository.
 
 ## 🙌 Contributing
 
-"Help us make MovieMania AI even better! PRs are always welcome."
+"Help me make MovieMania AI even better! PRs are always welcome."
 
 ## ✨ License
 
