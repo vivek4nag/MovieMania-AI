@@ -4,7 +4,7 @@ Welcome to MovieMania AI – your personal movie companion! Whether you're in th
 
 ## 🔗 Live Link
 
-[Experience the magic here](https://movie-mania-vivke04.netlify.app/)
+[Experience the magic here](https://moviemania-ai.vercel.app/)
 <br>
 "Why just watch movies when you can live them? Click the link and let the binge begin!" 😎🍿
 "P.S.: If you don’t find your favorite movie here, maybe the AI needs a popcorn break! 🍕🤖"
